@@ -31,9 +31,9 @@ MODEL_METRICS = {
 
 EXAMPLE_REVIEWS = [
     "Excellent app, love it! Fast delivery and great prices. Highly recommend.",
-    "Worst app ever. My order never arrived and support was useless.",
+    "The product looks okay, but the quality is not as expected. Delivery was late and the packaging was damaged. It works, but I am not satisfied with the overall experience.",
     "The app keeps crashing every time I try to pay. Very disappointed, want a refund.",
-    "Nice app, easy to use and the delivery is always on time.",
+    "The app is easy to use and the prices are good, but delivery takes too much time. Customer support also needs improvement. Overall, it is okay.",
 ]
 
 SENTIMENT_EMOJI = {"Negative": "😞", "Neutral": "😐", "Positive": "😊"}

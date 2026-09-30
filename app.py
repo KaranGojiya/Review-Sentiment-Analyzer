@@ -193,10 +193,15 @@ else:
         st.subheader("Prediction")
 
         stars_text = "★" * result["stars"] + "☆" * (5 - result["stars"])
+        
+        rounded_expected = round(result["expected"])
+        stars_text = "★" * rounded_expected + "☆" * (5 - rounded_expected)
+        
         message = (
             f"{SENTIMENT_EMOJI[result['sentiment']]} **{result['sentiment']}** review, "
-            f"predicted rating **{stars_text} ({result['label']})**"
+            f"estimated rating **{result['expected']:.2f}/5** {stars_text}"
         )
+        
         if result["sentiment"] == "Positive":
             st.success(message)
         elif result["sentiment"] == "Negative":
@@ -204,13 +209,19 @@ else:
         else:
             st.info(message)
 
-        m1, m2, m3 = st.columns(3)
-        m1.metric("Predicted rating", result["label"])
-        m2.metric("Confidence", f"{result['confidence']:.1f}%")
+        m1.metric(
+            "Estimated Rating",
+            f"{result['expected']:.2f} / 5"
+        )
+        
+        m2.metric(
+            "Most Likely Class",
+            result["label"]
+        )
+        
         m3.metric(
-            "Expected rating",
-            f"{result['expected']:.2f} / 5",
-            help="Average star rating when every rating is weighted by its probability.",
+            "Class Confidence",
+            f"{result['confidence']:.1f}%"
         )
 
         st.metric(

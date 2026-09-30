@@ -191,51 +191,44 @@ else:
 
     with left:
         st.subheader("Prediction")
-
-        stars_text = "★" * result["stars"] + "☆" * (5 - result["stars"])
-        
+    
         rounded_expected = round(result["expected"])
         stars_text = "★" * rounded_expected + "☆" * (5 - rounded_expected)
-        
+    
         message = (
             f"{SENTIMENT_EMOJI[result['sentiment']]} **{result['sentiment']}** review, "
             f"estimated rating **{result['expected']:.2f}/5** {stars_text}"
         )
-        
+    
         if result["sentiment"] == "Positive":
             st.success(message)
         elif result["sentiment"] == "Negative":
             st.error(message)
         else:
             st.info(message)
-
+    
+        m1, m2, m3 = st.columns(3)
+    
         m1.metric(
             "Estimated Rating",
             f"{result['expected']:.2f} / 5"
         )
-        
+    
         m2.metric(
             "Most Likely Class",
             result["label"]
         )
-        
+    
         m3.metric(
             "Class Confidence",
             f"{result['confidence']:.1f}%"
         )
-
+    
         st.metric(
             f"Overall sentiment: {result['sentiment']}",
             f"{result['sentiment_pct']:.1f}%",
-            help="Negative = 1-2 stars, Neutral = 3 stars, Positive = 4-5 stars. "
-                 "The percentage adds up the probabilities of the stars in that group.",
+            help="Negative = 1-2 stars, Neutral = 3 stars, Positive = 4-5 stars."
         )
-
-        if result["confidence"] < 50:
-            st.caption(
-                "The model is unsure about the exact star rating. The overall "
-                "sentiment above is usually more reliable than the exact stars."
-            )
 
     with right:
         st.subheader("Probability of each rating")

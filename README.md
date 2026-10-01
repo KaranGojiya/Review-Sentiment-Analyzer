@@ -2,7 +2,7 @@
 
 A deep learning web app that reads a customer review and predicts its **star rating (1 to 5)** and overall **sentiment** (negative, neutral or positive), using a stacked GRU network.
 
-**[Live Demo](https://your-app-name.streamlit.app/)**
+**[Live Demo](https://review-sentiment-analyzer-1.streamlit.app/)**
 
 ## Features
 
